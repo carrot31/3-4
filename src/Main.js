@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 import { IoIosArrowDroprightCircle,IoMdSad,IoMdHappy } from "react-icons/io";
+import {} from 'react-transition-group';  
 import './App.css';
 
 import { useHistory } from "react-router-dom";
@@ -26,8 +27,11 @@ const Main = (props) => {
 
     return (
         <>  
-            <IoMdHappy size="30px" color="gold"/><IoMdSad size="30px" color="gold"/> 
-            <IoMdHappy size="30px" color="gold"/><IoMdSad size="30px" color="gold"/>      
+            <Icons>
+              <IoMdHappy className="icon"/><IoMdSad className="icon"/> 
+              <IoMdHappy className="icon"/><IoMdSad className="icon"/>       
+            </Icons>
+            
             <Title>내 일주일은?</Title>
             {week_rates.map((b, i) => {   //b:(day월:rate3(i0))[i], 화:5(1), 수:1(2)...
                 return (
@@ -54,7 +58,17 @@ const Main = (props) => {
     );
 }
 
+const Icons = styled.div`
+  text-align: center;
+  .icon{
+    font-size: 30px;
+    color: gold;
+  }
+  .icon:hover{
+    color: slateblue;
+  }
 
+`;
 const Title = styled.h2`
   text-align: center;
   margin-top: 20px;
