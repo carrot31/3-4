@@ -1,10 +1,12 @@
 import React from "react";
 import styled from 'styled-components';
-import { IoIosArrowDroprightCircle,IoMdSad,IoMdHappy } from "react-icons/io";
+import { IoIosArrowDroprightCircle } from "react-icons/io";
+import { TiAdjustBrightness, TiWeatherPartlySunny,TiWeatherDownpour } from "react-icons/ti";
 import {} from 'react-transition-group';  
 import './App.css';
 
 import { useHistory } from "react-router-dom";
+import { keyframes } from "styled-components";
 
 
 const Main = (props) => {
@@ -23,56 +25,92 @@ const Main = (props) => {
             rate: Math.floor(Math.random() *5) //rate: 341234
         };
     });
-    // console.log(week_rates)
+   
+    const sun = <TiAdjustBrightness size="30px" color="red"/>
+    const cloud = <TiWeatherPartlySunny size="30px" color="gold"/>
+    const rain = <TiWeatherDownpour size="30px" color="blue"/>
 
     return (
-        <>  
-            <Icons>
-              <IoMdHappy className="icon"/><IoMdSad className="icon"/> 
-              <IoMdHappy className="icon"/><IoMdSad className="icon"/>       
-            </Icons>
-            
-            <Title>내 일주일은?</Title>
-            {week_rates.map((b, i) => {   //b:(day월:rate3(i0))[i], 화:5(1), 수:1(2)...
+        <> 
+          <Top>{sun}{cloud}{rain}</Top>         
+          <Title>오늘, 당신의 날씨는?</Title>
+            {week_rates.map(({day,rate}, i) => {   //b:{day: '수', rate: 0}
                 return (
-                    <CircleBox key={`week_${i}`}>
-                        <WeekFont>{b.day}</WeekFont>
+
+                      <CircleBox key={`week_${day}`}>   
+                        <Weather>
+                          {rate < 2 ? rain:
+                          (rate < 3 ? cloud : sun )}
+                        </Weather> 
+                        <WeekFont>{day}</WeekFont>                    
                         {Array.from({ length: 5 }, (item, idx) => {
                             return (
                               <Circle
                               key={idx}
-                              rate={b.rate}
+                              rate={rate}
                               idx={idx}
                               />   
                             );
                         })}
-                        <IoIosArrowDroprightCircle className="icon"
-                           
-                            onClick={() => { history.push(`/detail/${b.day}`); }} 
+                        <IoIosArrowDroprightCircle size='40px' color='#F4E988'   
+                            onClick={() => { history.push(`/detail/${day}`); }} 
                         />
-                        
+
+
+
                     </CircleBox>  
+                    
                 );
             })}
         </>
     );
 }
 
-const Icons = styled.div`
-  text-align: center;
-  .icon{
-    font-size: 30px;
-    color: gold;
-  }
-  .icon:hover{
-    color: slateblue;
-  }
+// const Animation = keyframes`
+//   0%{
+//     top: 0px;
+//   }
+//   25%{
+//     top: 20px;
+//   }
+//   50%{
+//     top: 40px;
+//   }
+//   75%{
+//     top: 20px;
+//   }
+//   100%{
+//     top: 0px;
+//   }
+// `;
 
-`;
+// const Mini = styled.div`
+//   width: 10px;
+//   height: 10px;
+//   border-radius: 50%;
+//   background: red;
+//   position: absolute;
+//   animation: ${Animation} 0.5s infinite linear;
+// `;
+
+// const Icons = styled.div`
+//   text-align: center;
+//   font-size: 30px;
+//   color: gold;
+//   animation: ${Animation} 2s infinite linear;
+
+// `;
+const Top = styled.div`
+  text-align: center;
+
+`
 const Title = styled.h2`
   text-align: center;
-  margin-top: 20px;
+  margin:0px;
   font-family: 'OTJalollineunharuRA';
+  span{
+    font-size: 30px;
+  }
 `;
 const WeekFont = styled.div`
   font-size: 15px;
@@ -86,20 +124,18 @@ const CircleBox = styled.h3`
   align-items: center;
   margin: 1rem 0px;
   width: 100%;  
-  .icon{
-    font-size: 38px;
-    color: pink;
-  }
-  .icon:hover{
-    color: gold;
-  }
+
 `;
+const Weather = styled.div`
+  padding-right: 10px;
+`;
+
 const Circle = styled.div`
   width:30px;
   height: 30px;
   border-radius: 30px;
-  margin:5px;
-  background: ${(props) => props.rate < props.idx? "#ddd" : "#80D6CB"};
+  margin:5px; 
+  background: ${(props) => props.rate < props.idx? "#ddd" : "lightblue"};
   
 `;
 

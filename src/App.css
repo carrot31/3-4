@@ -42,12 +42,6 @@
   src: url('./styles/font/OTJalpullineunharuRA.woff');
 }
 
-/* 
-.motion{
-  animation: 'motion 0.3s linear 0s infinite alternate';
+body{
+  background: url(https://ifh.cc/g/sZlX68.jpg);
 }
-
-@keyframes motion {
-	0% {margin-top: 0px;}
-	100% {margin-top: 10px;}
-} */

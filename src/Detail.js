@@ -5,6 +5,7 @@ import './App.css';
 import { useHistory,useParams } from "react-router-dom";
 
 const Detail = (props) => {
+    console.log(props);
     const history = useHistory();
     const {id} = useParams(); //다시 공부해
 
@@ -15,9 +16,8 @@ const Detail = (props) => {
   React.useEffect(() => { //공부해
 
     const press = (e) => {
-    //   console.log("키보드를 누르면 어떤 이벤트가 발생하는 지 확인해야지! : ", e);
 
-      if ([1, 2, 3, 4, 5].indexOf(parseInt(e.key)) !== -1) { //찬익님께 물어보기~~~
+      if ([1, 2, 3, 4, 5].indexOf(parseInt(e.key)) !== -1) {
         setGrade(parseInt(e.key)); 
       }
     };
@@ -63,7 +63,7 @@ const Container = styled.div`
       padding: 10px 10px 7px 10px;
       border-radius: 5px;
       color: white;
-      background: gold; 
+      background: pink; 
   }
 `;
 const CircleBox = styled.div`
@@ -77,20 +77,23 @@ const CircleBox = styled.div`
 const Button = styled.button`
     width: 250px;
     height: 50px;
-    background: pink;
+    background: #F4E988;
     color: white;
     border: 0px;
     border-radius: 5px;
     cursor: pointer; 
     font-size:20px;
     font-family: 'OTJalollineunharuRA';
+    &:hover{
+        box-shadow: 0px 0px 5px 0px gray;
+    }
 `;
 const Heart = styled.div`
     width: 20px;
     height: 20px;
     background: red;
     position: relative;
-    background: ${props=>props.grade < props.idx+1 ? "#ddd" : "#80D6CB"};
+    background: ${props=>props.grade < props.idx+1 ? "#ddd" : "lightblue"};
     transform: rotate(-45deg);
     margin: 12px;
     &::before{
@@ -101,7 +104,7 @@ const Heart = styled.div`
         top: -50%;
         left: -0%;
         border-radius:50%;
-        background: ${props=>props.grade < props.idx+1 ? "#ddd" : "#80D6CB"};
+        background: ${props=>props.grade < props.idx+1 ? "#ddd" : "lightblue"};
     }
     &::after{
         content:'';
@@ -109,7 +112,7 @@ const Heart = styled.div`
         height: 20px;  
         position: absolute;
         border-radius:50%;
-        background: ${props=>props.grade < props.idx+1 ? "#ddd" : "#80D6CB"};
+        background: ${props=>props.grade < props.idx+1 ? "#ddd" : "lightblue"};
     }
 `;
 
