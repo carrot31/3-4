@@ -52,7 +52,7 @@ const Main = (props) => {
                               />   
                             );
                         })}
-                        <IoIosArrowDroprightCircle size='40px' color='#F4E988'   
+                        <IoIosArrowDroprightCircle size='38px' color='#F4E988'   
                             onClick={() => { history.push(`/detail/${day}`); }} 
                         />
 
@@ -69,13 +69,14 @@ const Animation = keyframes`
     top:0px;
   }
   50% {
-    top: 10px;
+    top:10px;
   }
   100% {
     top:0px;
   }
 `;
 const Ani = styled.div`  
+  margin-top: 5px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -101,7 +102,6 @@ const Rain = styled.div`
 `;
 const Title = styled.h2`
   text-align: center;
-  margin-top: 15px;
   font-family: 'OTJalollineunharuRA';
   span{
     font-size: 30px;
