@@ -2,8 +2,6 @@ import React from "react";
 import styled from 'styled-components';
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { TiAdjustBrightness, TiWeatherPartlySunny,TiWeatherDownpour } from "react-icons/ti";
-import {} from 'react-transition-group';  
-import './App.css';
 
 import { useHistory } from "react-router-dom";
 import { keyframes } from "styled-components";
@@ -32,7 +30,9 @@ const Main = (props) => {
 
     return (
         <> 
-          <Top>{sun}{cloud}{rain}</Top>         
+          <Ani>
+            <Sun>{sun}</Sun> <Cloud>{cloud}</Cloud> <Rain>{rain}</Rain>
+          </Ani>
           <Title>오늘, 당신의 날씨는?</Title>
             {week_rates.map(({day,rate}, i) => {   //b:{day: '수', rate: 0}
                 return (
@@ -56,8 +56,6 @@ const Main = (props) => {
                             onClick={() => { history.push(`/detail/${day}`); }} 
                         />
 
-
-
                     </CircleBox>  
                     
                 );
@@ -66,57 +64,48 @@ const Main = (props) => {
     );
 }
 
-// const Animation = keyframes`
-//   0%{
-//     top: 0px;
-//   }
-//   25%{
-//     top: 20px;
-//   }
-//   50%{
-//     top: 40px;
-//   }
-//   75%{
-//     top: 20px;
-//   }
-//   100%{
-//     top: 0px;
-//   }
-// `;
-
-// const Mini = styled.div`
-//   width: 10px;
-//   height: 10px;
-//   border-radius: 50%;
-//   background: red;
-//   position: absolute;
-//   animation: ${Animation} 0.5s infinite linear;
-// `;
-
-// const Icons = styled.div`
-//   text-align: center;
-//   font-size: 30px;
-//   color: gold;
-//   animation: ${Animation} 2s infinite linear;
-
-// `;
-const Top = styled.div`
+const Animation = keyframes`
+  0% {
+    top:0px;
+  }
+  50% {
+    top: 10px;
+  }
+  100% {
+    top:0px;
+  }
+`;
+const Ani = styled.div`  
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+const Sun = styled.div`  
+  position: relative;
   text-align: center;
-
-`
+  animation: ${Animation} 1s infinite linear; 
+  animation-delay: 0s;
+`;
+const Cloud = styled.div`  
+  position: relative;
+  text-align: center;
+  animation: ${Animation} 1s infinite linear; 
+  animation-delay: 0.3s;
+`;
+const Rain = styled.div`  
+  position: relative;
+  text-align: center;
+  animation: ${Animation} 1s infinite linear;
+  animation-delay: 0.6s; 
+`;
 const Title = styled.h2`
   text-align: center;
-  margin:0px;
+  margin-top: 15px;
   font-family: 'OTJalollineunharuRA';
   span{
     font-size: 30px;
   }
-`;
-const WeekFont = styled.div`
-  font-size: 15px;
-  margin-right: 5px;
-  font-size: 18px;
-  font-family: 'OTJalollineunharuRA';
 `;
 const CircleBox = styled.h3`
   display: flex;
@@ -124,19 +113,22 @@ const CircleBox = styled.h3`
   align-items: center;
   margin: 1rem 0px;
   width: 100%;  
-
 `;
 const Weather = styled.div`
   padding-right: 10px;
 `;
-
+const WeekFont = styled.div`
+  font-size: 15px;
+  margin-right: 5px;
+  font-size: 18px;
+  font-family: 'OTJalollineunharuRA';
+`;
 const Circle = styled.div`
   width:30px;
   height: 30px;
   border-radius: 30px;
   margin:5px; 
   background: ${(props) => props.rate < props.idx? "#ddd" : "lightblue"};
-  
 `;
 
 export default Main;

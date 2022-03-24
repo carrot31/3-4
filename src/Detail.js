@@ -7,13 +7,13 @@ import { useHistory,useParams } from "react-router-dom";
 const Detail = (props) => {
     console.log(props);
     const history = useHistory();
-    const {id} = useParams(); //다시 공부해
+    const {id} = useParams(); 
 
     const [grade, setGrade] = React.useState(0);
 
 
 
-  React.useEffect(() => { //공부해
+  React.useEffect(() => {
 
     const press = (e) => {
 
@@ -60,7 +60,7 @@ const Container = styled.div`
   font-size: 20px;
   font-family: 'OTJalollineunharuRA';
   span{
-      padding: 10px 10px 7px 10px;
+      padding: 12px 10px 8px 10px;
       border-radius: 5px;
       color: white;
       background: pink; 
@@ -77,6 +77,7 @@ const CircleBox = styled.div`
 const Button = styled.button`
     width: 250px;
     height: 50px;
+    padding-top: 5px;
     background: #F4E988;
     color: white;
     border: 0px;

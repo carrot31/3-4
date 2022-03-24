@@ -27,9 +27,6 @@ function App() {
   );
 }
 
-// const Body = styled.div`
-//   background: lightblue;
-// `;
 const Container = styled.div`
   max-width: 400px;
   width: 80vw;
