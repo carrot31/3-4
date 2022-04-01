@@ -44,7 +44,7 @@ const Detail = (props) => {
     }, []);
 
     return (
-
+        
         <Container>
             <span>{id}요일</span>{' '}평점 남기기
 
